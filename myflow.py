@@ -14,13 +14,15 @@ X_train, X_test, y_train, y_test = train_test_split(data.data, data.target,
 mlflow.set_tracking_uri("http://localhost:5000")
 mlflow.set_experiment("diabetes")
 
+try:
+    experiment_id = mlflow.create_experiment(experiment_name)
+except mlflow.exceptions.MlflowException:
+    experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
 
-# Начало эксперимента
 # Эксперимент 1: n_estimators=100, max_depth=None
-with mlflow.start_run() as run1:
+with mlflow.start_run(experiment_id=experiment_id) as run1:
     # Обучение модели
-    rf1 = RandomForestRegressor(n_estimators=100, max_depth=None,
-                                random_state=42)
+    rf1 = RandomForestRegressor(n_estimators=100, max_depth=None, random_state=42)
     rf1.fit(X_train, y_train)
 
     # Оценка модели
@@ -36,10 +38,9 @@ with mlflow.start_run() as run1:
     mlflow.sklearn.log_model(rf1, "model")
 
 # Эксперимент 2: n_estimators=200, max_depth=10
-with mlflow.start_run() as run2:
+with mlflow.start_run(experiment_id=experiment_id) as run2:
     # Обучение модели
-    rf2 = RandomForestRegressor(n_estimators=200, max_depth=10,
-                                random_state=42)
+    rf2 = RandomForestRegressor(n_estimators=200, max_depth=10, random_state=42)
     rf2.fit(X_train, y_train)
 
     # Оценка модели
@@ -53,3 +54,8 @@ with mlflow.start_run() as run2:
     mlflow.log_param("max_depth", 10)
     mlflow.log_metrics(metrics)
     mlflow.sklearn.log_model(rf2, "model")
+
+# Проверка запусков
+runs = mlflow.search_runs(experiment_ids=[experiment_id])
+print("Запуски в эксперименте 'diabetes':")
+print(runs)
