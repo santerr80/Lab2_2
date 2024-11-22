@@ -16,17 +16,34 @@ mlflow.set_experiment("diabetes")
 
 
 # Начало эксперимента
-with mlflow.start_run():
+# Эксперимент 1: n_estimators=100, max_depth=None
+with mlflow.start_run() as run1:
     # Обучение модели
-    rf = RandomForestRegressor(n_estimators=100, random_state=42)
-    rf.fit(X_train, y_train)
+    rf1 = RandomForestRegressor(n_estimators=100, max_depth=None, random_state=42)
+    rf1.fit(X_train, y_train)
 
     # Оценка модели
-    predictions = rf.predict(X_test)
-    mse = mean_squared_error(y_test, predictions)
+    predictions1 = rf1.predict(X_test)
+    mse1 = mean_squared_error(y_test, predictions1)
 
     # Логирование параметров, метрик и модели
     mlflow.log_param("n_estimators", 100)
-    mlflow.log_metric("mse", mse)
-    mlflow.sklearn.log_model(rf, "model")
-mlflow.end_run()
+    mlflow.log_param("max_depth", None)
+    mlflow.log_metric("mse", mse1)
+    mlflow.sklearn.log_model(rf1, "model")
+
+# Эксперимент 2: n_estimators=200, max_depth=10
+with mlflow.start_run() as run2:
+    # Обучение модели
+    rf2 = RandomForestRegressor(n_estimators=200, max_depth=10, random_state=42)
+    rf2.fit(X_train, y_train)
+
+    # Оценка модели
+    predictions2 = rf2.predict(X_test)
+    mse2 = mean_squared_error(y_test, predictions2)
+
+    # Логирование параметров, метрик и модели
+    mlflow.log_param("n_estimators", 200)
+    mlflow.log_param("max_depth", 10)
+    mlflow.log_metric("mse", mse2)
+    mlflow.sklearn.log_model(rf2, "model")
