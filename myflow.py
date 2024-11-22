@@ -72,3 +72,6 @@ with mlflow.start_run(experiment_id=experiment_id) as run2:
 runs = mlflow.search_runs(experiment_ids=[experiment_id])
 print("Запуски в эксперименте 'diabetes':")
 print(runs)
+
+# Получение информации о запусках
+runs = mlflow.search_runs(experiment_ids=[experiment_id])
