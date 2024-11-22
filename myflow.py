@@ -14,6 +14,9 @@ X_train, X_test, y_train, y_test = train_test_split(data.data, data.target,
 mlflow.set_tracking_uri("http://localhost:5000")
 mlflow.set_experiment("diabetes")
 
+
+experiment_name = "diabetes"
+
 try:
     experiment_id = mlflow.create_experiment(experiment_name)
 except mlflow.exceptions.MlflowException:
@@ -36,6 +39,11 @@ with mlflow.start_run(experiment_id=experiment_id) as run1:
     mlflow.log_param("max_depth", None)
     mlflow.log_metrics(metrics)
     mlflow.sklearn.log_model(rf1, "model")
+    
+    # Регистрация модели
+    model_uri1 = f"runs:/{run1.info.run_id}/model"
+    model_details1 = mlflow.register_model(model_uri=model_uri1, name="diabetes_model")
+    print(f"Model 1 registered: {model_details1}")
 
 # Эксперимент 2: n_estimators=200, max_depth=10
 with mlflow.start_run(experiment_id=experiment_id) as run2:
@@ -54,6 +62,11 @@ with mlflow.start_run(experiment_id=experiment_id) as run2:
     mlflow.log_param("max_depth", 10)
     mlflow.log_metrics(metrics)
     mlflow.sklearn.log_model(rf2, "model")
+    
+    # Регистрация модели
+    model_uri2 = f"runs:/{run2.info.run_id}/model"
+    model_details2 = mlflow.register_model(model_uri=model_uri2, name="diabetes_model")
+    print(f"Model 2 registered: {model_details2}")
 
 # Проверка запусков
 runs = mlflow.search_runs(experiment_ids=[experiment_id])
