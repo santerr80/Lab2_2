@@ -19,7 +19,8 @@ mlflow.set_experiment("diabetes")
 # Эксперимент 1: n_estimators=100, max_depth=None
 with mlflow.start_run() as run1:
     # Обучение модели
-    rf1 = RandomForestRegressor(n_estimators=100, max_depth=None, random_state=42)
+    rf1 = RandomForestRegressor(n_estimators=100, max_depth=None,
+                                random_state=42)
     rf1.fit(X_train, y_train)
 
     # Оценка модели
@@ -37,7 +38,8 @@ with mlflow.start_run() as run1:
 # Эксперимент 2: n_estimators=200, max_depth=10
 with mlflow.start_run() as run2:
     # Обучение модели
-    rf2 = RandomForestRegressor(n_estimators=200, max_depth=10, random_state=42)
+    rf2 = RandomForestRegressor(n_estimators=200, max_depth=10,
+                                random_state=42)
     rf2.fit(X_train, y_train)
 
     # Оценка модели
