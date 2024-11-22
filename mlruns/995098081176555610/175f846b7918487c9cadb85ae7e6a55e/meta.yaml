@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/995098081176555610/175f846b7918487c9cadb85ae7e6a55e/artifacts
+end_time: 1732256147368
+entry_point_name: ''
+experiment_id: '995098081176555610'
+lifecycle_stage: active
+run_id: 175f846b7918487c9cadb85ae7e6a55e
+run_name: lyrical-grouse-73
+run_uuid: 175f846b7918487c9cadb85ae7e6a55e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732256144148
+status: 3
+tags: []
+user_id: Santerr80

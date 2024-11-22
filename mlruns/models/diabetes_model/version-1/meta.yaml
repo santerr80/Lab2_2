@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1732256144115
+current_stage: None
+description: ''
+last_updated_timestamp: 1732256144115
+name: diabetes_model
+run_id: 19a9076d6e7a44ae933099882506e78f
+run_link: ''
+source: mlflow-artifacts:/995098081176555610/19a9076d6e7a44ae933099882506e78f/artifacts/model
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/995098081176555610/19a9076d6e7a44ae933099882506e78f/artifacts/model
+user_id: null
+version: 1
