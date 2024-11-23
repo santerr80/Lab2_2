@@ -28,4 +28,29 @@
 
 ## Дополнительные заметки
 
+Запуск сервера
 mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlruns
+
+
+## Отчет
+В результате обучения модели машинного обучения на основе RandomForestRegressor с различными параметрами были получены следующие выводы:
+
+1. Run ID: 3d54b4af650a4c05853a17319c78e1e7
+    Run Name: stately-robin-938
+    Parameters: {'n_estimators': '200', 'max_depth': '10'}
+    Metrics: {'mse': 3004.9651817975905, 'r2': 0.432827649257322}
+
+2. Run ID: dd57ae9583bd418ab47b1b7f29e25543
+    Run Name: incongruous-bass-884
+    Parameters: {'n_estimators': '100', 'max_depth': 'None'}
+    Metrics: {'mse': 2952.0105887640448, 'r2': 0.4428225673999313}
+
+А также построены графики:
+
+![alt text](reports\metrics_mse.png)
+
+![alt text](reports\metrics_r2.png)
+
+## Выводы
+
+    Точность модели улучшилась с увеличением параметра  "n_estimators" до 200 и назначения 'max_depth' = 10
