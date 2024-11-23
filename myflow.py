@@ -30,11 +30,11 @@ with mlflow.start_run(experiment_id=experiment_id) as run1:
 
     # Оценка модели
     predictions1 = rf1.predict(X_test)
-    mse1 = mean_squared_error(y_test, predictions1)
-    r2_1 = r2_score(y_test, predictions1)
+    mse = mean_squared_error(y_test, predictions1)
+    r2 = r2_score(y_test, predictions1)
 
     # Логирование параметров, метрик и модели
-    metrics = {"mse1": mse1, "r2_1": r2_1}
+    metrics = {"mse": mse, "r2": r2}
     mlflow.log_param("n_estimators", 100)
     mlflow.log_param("max_depth", None)
     mlflow.log_metrics(metrics)
@@ -53,11 +53,11 @@ with mlflow.start_run(experiment_id=experiment_id) as run2:
 
     # Оценка модели
     predictions2 = rf2.predict(X_test)
-    mse2 = mean_squared_error(y_test, predictions2)
-    r2_2 = r2_score(y_test, predictions2)
+    mse = mean_squared_error(y_test, predictions2)
+    r2 = r2_score(y_test, predictions2)
 
     # Логирование параметров, метрик и модели
-    metrics = {"mse2": mse2, "r2_2": r2_2}
+    metrics = {"mse": mse, "r2": r2}
     mlflow.log_param("n_estimators", 200)
     mlflow.log_param("max_depth", 10)
     mlflow.log_metrics(metrics)

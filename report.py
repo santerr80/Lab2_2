@@ -1,6 +1,7 @@
 # Import the necessary libraries
 import mlflow
 from mlflow.tracking import MlflowClient
+import os
 
 # Set the tracking URI
 mlflow.set_tracking_uri("http://localhost:5000")
@@ -23,11 +24,17 @@ print(f"Artifact Location: {experiment.artifact_location}")
 # List all runs
 runs = client.search_runs(experiment_ids=[experiment_id])
 
+# Save the report
+filename = os.path.join('reports', 'report.txt')
+dirname = os.path.dirname(filename)
 
-# Print the runs
-for run in runs:
-    print(f"Run ID: {run.info.run_id}")
-    print(f"Run Name: {run.data.tags.get('mlflow.runName', 'N/A')}")
-    print(f"Parameters: {run.data.params}")
-    print(f"Metrics: {run.data.metrics}")
-    print("="*40)
+if not os.path.exists(dirname):
+    os.makedirs(dirname)
+
+with open(filename, "w") as f:
+    for run in runs:
+        print(f"Run ID: {run.info.run_id}", file=f)
+        print(f"Run Name: {run.data.tags.get('mlflow.runName', 'N/A')}", file=f)
+        print(f"Parameters: {run.data.params}", file=f)
+        print(f"Metrics: {run.data.metrics}", file=f)
+        print("="*40, file=f)

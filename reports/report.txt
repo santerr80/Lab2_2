@@ -1,0 +1,10 @@
+Run ID: 3d54b4af650a4c05853a17319c78e1e7
+Run Name: stately-robin-938
+Parameters: {'n_estimators': '200', 'max_depth': '10'}
+Metrics: {'mse': 3004.9651817975905, 'r2': 0.432827649257322}
+========================================
+Run ID: dd57ae9583bd418ab47b1b7f29e25543
+Run Name: incongruous-bass-884
+Parameters: {'n_estimators': '100', 'max_depth': 'None'}
+Metrics: {'mse': 2952.0105887640448, 'r2': 0.4428225673999313}
+========================================
