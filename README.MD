@@ -47,9 +47,9 @@ mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./
 
 А также построены графики:
 
-![alt text](reports\metrics_mse.png)
+![MSE](reports/metrics_mse.png)
 
-![alt text](reports\metrics_r2.png)
+![R2](reports/metrics_r2.png)
 
 ## Выводы
 
